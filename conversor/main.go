@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"conversor/monedas"
+	"conversor/vocales"
 )
 
 func main() {
@@ -31,4 +32,6 @@ func main() {
 		dolares,
 		monedas.DolarABTC(dolares),
 	)
+
+	vocales.Vocales()
 }
