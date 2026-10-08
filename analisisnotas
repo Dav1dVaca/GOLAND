@@ -1,0 +1,55 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	// Array bidimensional con las notas de 6 estudiantes y 4 materias
+	notas := [6][4]float64{
+		{8.2, 5.9, 0.7, 7.4},
+		{6.4, 9.1, 7.3, 4.8},
+		{5.8, 4.6, 8.9, 2.3},
+		{9.5, 3.2, 6.7, 8.1},
+		{7.1, 8.4, 5.3, 9.7},
+		{4.2, 6.9, 1.8, 7.6},
+	}
+
+	var sumaGeneral float64
+
+	fmt.Println("ANÁLISIS DE NOTAS DE ESTUDIANTES")
+
+	// Recorrido de los estudiantes
+	for i := 0; i < 6; i++ {
+
+		notasEstudiante := notas[i][:]
+
+		var suma float64
+		notaMayor := notasEstudiante[0]
+		notaMenor := notasEstudiante[0]
+
+		for _, nota := range notasEstudiante {
+			suma += nota
+
+			if nota > notaMayor {
+				notaMayor = nota
+			}
+
+			if nota < notaMenor {
+				notaMenor = nota
+			}
+		}
+
+		promedio := suma / float64(len(notasEstudiante))
+		sumaGeneral += suma
+
+		fmt.Printf("Estudiante %d:\n", i+1)
+		fmt.Printf("  Promedio: %.2f\n", promedio)
+		fmt.Printf("  Nota más alta: %.2f\n", notaMayor)
+		fmt.Printf("  Nota más baja: %.2f\n\n", notaMenor)
+	}
+
+	// Promedio general de la clase
+	promedioGeneral := sumaGeneral / float64(6*4)
+
+	fmt.Printf("Promedio general de la clase: %.2f\n", promedioGeneral)
+}
