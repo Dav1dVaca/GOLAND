@@ -1,0 +1,76 @@
+package main
+
+import "fmt"
+
+func actividadGanadora(votos map[string]int) string {
+
+	var ganadora string
+	mayorVotos := -1
+
+	for actividad, cantidad := range votos {
+		if cantidad > mayorVotos {
+			mayorVotos = cantidad
+			ganadora = actividad
+		}
+	}
+
+	return ganadora
+}
+
+func main() {
+
+	// Crear el map con las actividades
+	votos := map[string]int{
+		"Deportes":    0,
+		"Videojuegos": 0,
+		"Cine":        0,
+		"Música":      0,
+	}
+
+	fmt.Println("VOTACIÓN DE ACTIVIDADES")
+
+	// Solicitar 5 votos
+	for i := 1; i <= 5; i++ {
+
+		var actividad string
+
+		fmt.Printf("\nVoto %d\n", i)
+		fmt.Println("1. Deportes")
+		fmt.Println("2. Videojuegos")
+		fmt.Println("3. Cine")
+		fmt.Println("4. Música")
+		fmt.Print("Seleccione una actividad: ")
+
+		fmt.Scan(&actividad)
+
+		switch actividad {
+		case "1":
+			votos["Deportes"]++
+
+		case "2":
+			votos["Videojuegos"]++
+
+		case "3":
+			votos["Cine"]++
+
+		case "4":
+			votos["Música"]++
+
+		default:
+			fmt.Println("Opción no válida.")
+			i--
+		}
+	}
+
+	// Mostrar resultados
+	fmt.Println("RESULTADOS DE LA VOTACIÓN")
+
+	for actividad, cantidad := range votos {
+		fmt.Printf("%s: %d votos\n", actividad, cantidad)
+	}
+
+	// Determinar actividad ganadora
+	ganadora := actividadGanadora(votos)
+
+	fmt.Printf("\nActividad con mayor aceptación: %s\n", ganadora)
+}
